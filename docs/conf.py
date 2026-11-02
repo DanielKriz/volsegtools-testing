@@ -90,8 +90,10 @@ coverage_ignore_modules = [
     # They can be safely ignored, because their symbols are re-exported by the
     # volsegtools.abc module. Otherwise, we are getting warning that these
     # modules are not documented. Which is false.
-    (r"(bundler|converter|downsampling_strategy|post_conversion_step"
-    r"|post_processing_step|processing_pipeline|serializer|typing)$"),
+    (
+        r"(bundler|converter|downsampling_strategy|post_conversion_step"
+        r"|post_processing_step|processing_pipeline|serializer|typing)$"
+    ),
 ]
 coverage_show_missing_items = True
 
