@@ -17,7 +17,7 @@ jobs:
           python-version: "3.12"
           enable-cache: true
       - name: Install volsegtools and documentation dependencies
-        run: uv sync --locked --group docs
+        run: uv sync --group docs
       - name: Build HTML of documentation
         run: >
           uv run --no-sync sphinx-build -n -W --keep-going -b html
