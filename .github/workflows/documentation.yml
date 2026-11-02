@@ -13,6 +13,8 @@ on:
         type: boolean
 
 env:
+  FIRST: ${{ github.event_name == 'push' }}
+  SECOND: ${{ github.ref_type == 'tag' }}
   SHOULD_DEPLOY: ${{ (github.event_name == 'push' && github.ref_type == 'tag') || (github.event_name == 'workflow_dispatch' && inputs.confirm_deployment) }}
 
 jobs:
@@ -23,6 +25,13 @@ jobs:
       deploy: ${{ env.SHOULD_DEPLOY }}
 
     steps:
+      - name: "DEBUG ENV"
+        run: |
+          {
+            env | sort
+            echo $FIRST
+            echo $SECOND
+          }
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2
         with:
