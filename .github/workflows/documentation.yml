@@ -20,13 +20,13 @@ jobs:
         run: uv sync --group docs
       - name: Build HTML of documentation
         run: >
-          uv run --no-sync sphinx-build -n -W --keep-going -b html
-            --doctree-dir docs/_build/doctrees # Thanks to this we are sharing build info with coverage
+          uv run --no-sync sphinx-build -n -W --keep-going -b html \
+            --doctree-dir docs/_build/doctrees \ # Thanks to this we are sharing build info with coverage
             docs docs/_build/html
       - name: Build Sphinx documentation coverage report
         run: >
-          uv run --no-sync sphinx-build -q -n -W --keep-going -b coverage
-            --doctree-dir docs/_build/doctrees
+          uv run --no-sync sphinx-build -q -n -W --keep-going -b coverage \
+            --doctree-dir docs/_build/doctrees \
             docs docs/_build/coverage
       - name: Publish coverage report
         run: |
