@@ -56,7 +56,7 @@ jobs:
 
   deploy_pages:
     name: "Deploy documentation to GitHub pages."
-    if: needs.build.outputs.deploy == 'true'
+    if: needs.build_docs.outputs.deploy == 'true'
     needs: build_docs
     runs-on: ubuntu-latest
     timeout-minutes: 10
