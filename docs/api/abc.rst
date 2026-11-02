@@ -1,7 +1,7 @@
 Abstract base classes
 =====================
 
-.. currentmodule:: volsegtools.abc
+.. module:: volsegtools.abc
 
 Implement these interfaces to extend volsegtools with custom converters, strategies, steps, serializers or bundlers.
 

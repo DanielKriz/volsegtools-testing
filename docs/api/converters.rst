@@ -20,5 +20,6 @@ with :meth:`ProcessingPipelineBuilder.add_volume_converter` or
    SFFConverter
    MeshConverter
    VRMLConverter
+   NumpyConverter
    ConverterMap
    UnsupportedCompressionError

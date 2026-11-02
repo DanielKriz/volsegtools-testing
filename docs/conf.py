@@ -80,7 +80,19 @@ toc_object_entries_show_parents = "hide"
 # Coverage
 # -----------------------------------------------------------------------------
 
-coverage_modules = ["volsegtools", "volsegtools.abc"]
+coverage_modules = ["volsegtools"]
+coverage_ignore_modules = [
+    # TODO: The whole CLI will be rewritten in the next version, we do not need
+    # to document it now.
+    r"volsegtools\._cli\.molstar_preprocessor",
+    # Internal:
+    r"volsegtools\._",
+    # They can be safely ignored, because their symbols are re-exported by the
+    # volsegtools.abc module. Otherwise, we are getting warning that these
+    # modules are not documented. Which is false.
+    (r"(bundler|converter|downsampling_strategy|post_conversion_step"
+    r"|post_processing_step|processing_pipeline|serializer|typing)$"),
+]
 coverage_show_missing_items = True
 
 # -----------------------------------------------------------------------------
@@ -125,6 +137,7 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 html_favicon = "_static/favicon.svg"
+html_domain_indices = False
 
 html_theme_options = {
     "navbar_align": "left",

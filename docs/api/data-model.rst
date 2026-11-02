@@ -26,3 +26,18 @@ Types that hold data and metadata as they move through the pipeline.
    create_file_name
    info_from_file_path
    FileNameInfo
+
+Backends
+--------
+
+In order to create the data in structured way, you have to either implement
+a :class:`~volsegtools.abc.ComputationBackend`, or you can use one of the
+builtin variants:
+
+.. autosummary::
+   :toctree: generated
+   :nosignatures:
+
+   DaskBackend
+   NumPyBackend
+   MeshBackend

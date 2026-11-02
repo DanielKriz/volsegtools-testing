@@ -15,3 +15,4 @@ Serializers write processed data to an output format. Set one per data kind with
    OBJSerializer
    PLYSerializer
    STLSerializer
+   MeshSerializationFunction

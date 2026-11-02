@@ -1,6 +1,8 @@
 API Reference
 =============
 
+.. module:: volsegtools
+
 This page lists the public API of ``volsegtools``. Everything is importable
 from the top-level package, e.g. ``import volsegtools as vst``.
 

@@ -17,10 +17,12 @@ Units, sizes, timing and other helpers.
    WorkingStore
    Timer
    TimerReporter
+   ConsoleTimerReporter
    JSONTimerReporter
    to_angstrom
    to_micrometer
    unit_from_str 
+   create_reorder_permutation
 
 
 Bytes

@@ -13,6 +13,8 @@ Error Evaluation Step
    ConsoleErrorReporter
    ErrorRecord
    UpsamplingQualityLevel
+   as_error_function
+   ErrorFunctionAdapter
 
 Error Evaluation Metrics
 ------------------------
