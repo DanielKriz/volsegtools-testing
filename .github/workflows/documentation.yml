@@ -15,7 +15,7 @@ on:
 env:
   FIRST: ${{ github.event_name == 'push' }}
   SECOND: ${{ github.ref_type == 'tag' }}
-  SHOULD_DEPLOY: ${{ (github.event_name == 'push' && github.ref_type == 'tag') || (github.event_name == 'workflow_dispatch' && inputs.confirm_deployment) }}
+  SHOULD_DEPLOY: ${{ (github.event_name == 'push' && github.ref_name == 'master') || (github.event_name == 'workflow_dispatch' && inputs.confirm_deployment) }}
 
 jobs:
   build_docs:
