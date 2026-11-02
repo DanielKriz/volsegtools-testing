@@ -26,7 +26,7 @@ from tests.stubs import (
 
 @pytest.fixture(scope="session")
 def datasets() -> dict[str, Path]:
-    root = Path(__file__).resolve().parent / "data" / "data"
+    root = Path(__file__).resolve().parent / "data"
     return {path.name: path for path in root.iterdir()}
 
 
