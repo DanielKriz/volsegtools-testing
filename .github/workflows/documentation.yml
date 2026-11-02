@@ -5,11 +5,22 @@ on:
     branches: ["**"]
   pull_request:
   workflow_dispatch:
+    inputs:
+      confirm_deployment:
+        description: "Confirm documentation deployment to GitHub Pages"
+        required: true
+        type: boolean
+
+env:
+  SHOULD_DEPLOY: ${{ (github.event_name == 'push' && github.ref_type == 'tag' && github.ref == 'refs/heads/master') || (github.event_name == 'workflow_dispatch' && inputs.confirm_deployment) }}
 
 jobs:
   build_docs:
     name: "Build documentation + Documentation Coverage Check"
     runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ env.SHOULD_DEPLOY }}
+
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2
@@ -37,14 +48,14 @@ jobs:
             echo "---"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Prepare Pages uploadable artifact
-        # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        if: env.SHOULD_DEPLOY == "true"
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
           path: docs/_build/html
 
   deploy_pages:
     name: "Deploy documentation to GitHub pages."
-    # if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    if: needs.build.outputs.deploy == 'true'
     needs: build_docs
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -56,5 +67,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Deployment summary
+        run: |
+          {
+            echo "## Documentation deployment"
+            echo "- **URL**: ${{ steps.deployment.outputs.page_url }}"
+          } >> "$GITHUB_STEP_SUMMARY"
